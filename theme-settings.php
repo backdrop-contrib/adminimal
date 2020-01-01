@@ -17,7 +17,7 @@ function adminimal_form_system_theme_settings_alter(&$form, &$form_state) {
 
   // Get adminimal theme path.
   global $base_url;
-  $adminimal_path = drupal_get_path('theme', 'adminimal');
+  $adminimal_path = backdrop_get_path('theme', 'adminimal');
   $old_css_path = $adminimal_path . '/css/custom.css';
   $custom_css_path = theme_get_setting('custom_css_path');
   if (empty($custom_css_path)) {
@@ -42,7 +42,7 @@ function adminimal_form_system_theme_settings_alter(&$form, &$form_state) {
 
   // Notify user to remove his old css file.
   if (file_exists($old_css_path)) {
-    drupal_set_message(t('Please delete the old @css_location file, as its no longer used.', array('@css_location file' => $old_css_path)), 'warning');
+    backdrop_set_message(t('Please delete the old @css_location file, as its no longer used.', array('@css_location file' => $old_css_path)), 'warning');
   }
 
   $form['adminimal_custom'] = array(

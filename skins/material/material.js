@@ -2,7 +2,7 @@
 'use strict';
 
 // Add wave effect.
-Drupal.behaviors.adminimal_material_wave_effect = {
+Backdrop.behaviors.adminimal_material_wave_effect = {
   attach: function (context, settings) {
     // Init Waves
     $( ".action-links li a" ).addClass("waves-effect waves-button waves-float waves-classic");
@@ -370,7 +370,7 @@ Drupal.behaviors.adminimal_material_wave_effect = {
 
 // Init Waves
 (function ($) {
-  Drupal.behaviors.wavesInit = {
+  Backdrop.behaviors.wavesInit = {
     attach: function (context, settings) {
         Waves.displayEffect();
     }

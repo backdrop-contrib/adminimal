@@ -20,27 +20,27 @@ function adminimal_preprocess_maintenance_page(&$vars) {
 /**
  * Override or insert variables into the html template.
  */
-function adminimal_preprocess_html(&$vars) {
+function adminimal_preprocess_page(&$vars) {
 
   // Get adminimal folder path.
-  $adminimal_path = drupal_get_path('theme', 'adminimal');
+  $adminimal_path = backdrop_get_path('theme', 'adminimal');
 
   // Add default styles.
-  drupal_add_css($adminimal_path . '/css/reset.css', array('group' => CSS_THEME, 'media' => 'all', 'weight' => -999));
-  drupal_add_css($adminimal_path . '/css/style.css', array('group' => CSS_THEME, 'media' => 'all', 'weight' => 1));
+  backdrop_add_css($adminimal_path . '/css/reset.css', array('group' => CSS_THEME, 'media' => 'all', 'weight' => -999));
+  backdrop_add_css($adminimal_path . '/css/style.css', array('group' => CSS_THEME, 'media' => 'all', 'weight' => 1));
 
   // Add conditional CSS for IE8 and below.
-  drupal_add_css($adminimal_path . '/css/ie.css', array('group' => CSS_THEME, 'browsers' => array('IE' => 'lte IE 8', '!IE' => FALSE), 'weight' => 999, 'preprocess' => TRUE));
+  backdrop_add_css($adminimal_path . '/css/ie.css', array('group' => CSS_THEME, 'browsers' => array('IE' => 'lte IE 8', '!IE' => FALSE), 'weight' => 999, 'preprocess' => TRUE));
 
   // Add conditional CSS for IE7 and below.
-  drupal_add_css($adminimal_path . '/css/ie7.css', array('group' => CSS_THEME, 'browsers' => array('IE' => 'lte IE 7', '!IE' => FALSE), 'weight' => 999, 'preprocess' => TRUE));
+  backdrop_add_css($adminimal_path . '/css/ie7.css', array('group' => CSS_THEME, 'browsers' => array('IE' => 'lte IE 7', '!IE' => FALSE), 'weight' => 999, 'preprocess' => TRUE));
 
   // Add conditional CSS for IE6.
-  drupal_add_css($adminimal_path . '/css/ie6.css', array('group' => CSS_THEME, 'browsers' => array('IE' => 'lte IE 6', '!IE' => FALSE), 'weight' => 999, 'preprocess' => TRUE));
+  backdrop_add_css($adminimal_path . '/css/ie6.css', array('group' => CSS_THEME, 'browsers' => array('IE' => 'lte IE 6', '!IE' => FALSE), 'weight' => 999, 'preprocess' => TRUE));
 
   //Add Homebox module support
   if (module_exists('homebox')) {
-    drupal_add_css($adminimal_path . '/css/homebox_custom.css', array('group' => CSS_THEME, 'media' => 'all', 'weight' => 1));
+    backdrop_add_css($adminimal_path . '/css/homebox_custom.css', array('group' => CSS_THEME, 'media' => 'all', 'weight' => 1));
   }
 
   // Add theme name to body class.
@@ -63,17 +63,17 @@ function adminimal_preprocess_html(&$vars) {
 
   // Add icons to the admin configuration page.
   if (theme_get_setting('display_icons_config')) {
-    drupal_add_css($adminimal_path . '/css/icons-config.css', array('group' => CSS_THEME, 'weight' => 10, 'preprocess' => TRUE));
+    backdrop_add_css($adminimal_path . '/css/icons-config.css', array('group' => CSS_THEME, 'weight' => 10, 'preprocess' => TRUE));
   }
 
   // Add icons to the admin configuration page.
   if (theme_get_setting('avoid_custom_font')) {
-    drupal_add_css($adminimal_path . '/css/avoid_custom_font.css', array('group' => CSS_THEME, 'weight' => 9000, 'preprocess' => TRUE));
+    backdrop_add_css($adminimal_path . '/css/avoid_custom_font.css', array('group' => CSS_THEME, 'weight' => 9000, 'preprocess' => TRUE));
   }
 
   // Load CKEditor styles if enabled in settings.
   if (theme_get_setting('adminimal_ckeditor') and theme_get_setting('adminimal_theme_skin') != 'dark') {
-    drupal_add_css($adminimal_path . '/css/ckeditor-adminimal.css', array('group' => CSS_THEME, 'media' => 'all', 'weight' => 2));
+    backdrop_add_css($adminimal_path . '/css/ckeditor-adminimal.css', array('group' => CSS_THEME, 'media' => 'all', 'weight' => 2));
   }
 
   // Define Default media queries.
@@ -88,29 +88,29 @@ function adminimal_preprocess_html(&$vars) {
 
   // Use Bootstrap Gids.
   if (theme_get_setting('use_bootstrap_grids')) {
-    drupal_add_css($adminimal_path . '/css/bootstrap-grids.css', array('group' => CSS_THEME, 'weight' => 1000, 'preprocess' => TRUE));
+    backdrop_add_css($adminimal_path . '/css/bootstrap-grids.css', array('group' => CSS_THEME, 'weight' => 1000, 'preprocess' => TRUE));
   }
 
   // Load custom Adminimal skin.
   $adminimal_skin = theme_get_setting('adminimal_theme_skin');
   if ((!is_null($adminimal_skin))) {
-    drupal_add_css($adminimal_path . '/skins/' . $adminimal_skin . '/' . $adminimal_skin . '.css', array('group' => CSS_THEME, 'weight' => 900, 'preprocess' => TRUE));
+    backdrop_add_css($adminimal_path . '/skins/' . $adminimal_skin . '/' . $adminimal_skin . '.css', array('group' => CSS_THEME, 'weight' => 900, 'preprocess' => TRUE));
     // Add conditional CSS for Mac OS X.
-    drupal_add_css($adminimal_path . '/skins/' . $adminimal_skin . '/mac_os_x.css', array('group' => CSS_THEME, 'weight' => 950, 'preprocess' => TRUE));
-    drupal_add_js($adminimal_path . '/skins/' . $adminimal_skin . '/' . $adminimal_skin . '.js');
+    backdrop_add_css($adminimal_path . '/skins/' . $adminimal_skin . '/mac_os_x.css', array('group' => CSS_THEME, 'weight' => 950, 'preprocess' => TRUE));
+    backdrop_add_js($adminimal_path . '/skins/' . $adminimal_skin . '/' . $adminimal_skin . '.js');
     $vars['classes_array'][] = 'adminimal-skin-' . $adminimal_skin ;
   }
   else {
-    drupal_add_css($adminimal_path . '/skins/default/default.css', array('group' => CSS_THEME, 'weight' => 900, 'preprocess' => TRUE));
+    backdrop_add_css($adminimal_path . '/skins/default/default.css', array('group' => CSS_THEME, 'weight' => 900, 'preprocess' => TRUE));
     // Add conditional CSS for Mac OS X.
-    drupal_add_css($adminimal_path . '/skins/default/mac_os_x.css', array('group' => CSS_THEME, 'weight' => 950, 'preprocess' => TRUE));
-    drupal_add_js($adminimal_path . '/skins/default/default.js');
+    backdrop_add_css($adminimal_path . '/skins/default/mac_os_x.css', array('group' => CSS_THEME, 'weight' => 950, 'preprocess' => TRUE));
+    backdrop_add_js($adminimal_path . '/skins/default/default.js');
     $vars['classes_array'][] = 'adminimal-skin-default' ;
   }
 
   // Add responsive styles.
-  drupal_add_css($adminimal_path . '/css/mobile.css', array('group' => CSS_THEME, 'media' => $media_query_mobile, 'weight' => 1000));
-  drupal_add_css($adminimal_path . '/css/tablet.css', array('group' => CSS_THEME, 'media' => $media_query_tablet, 'weight' => 1000));
+  backdrop_add_css($adminimal_path . '/css/mobile.css', array('group' => CSS_THEME, 'media' => $media_query_mobile, 'weight' => 1000));
+  backdrop_add_css($adminimal_path . '/css/tablet.css', array('group' => CSS_THEME, 'media' => $media_query_tablet, 'weight' => 1000));
 
   // Add custom CSS.
   if (theme_get_setting('custom_css')) {
@@ -119,7 +119,7 @@ function adminimal_preprocess_html(&$vars) {
       $custom_css_path = 'public://adminimal-custom.css';
     }
     if (file_exists($custom_css_path)) {
-      drupal_add_css($custom_css_path, array(
+      backdrop_add_css($custom_css_path, array(
         'group' => CSS_THEME,
         'weight' => 9999,
         'preprocess' => TRUE,
@@ -135,7 +135,7 @@ function adminimal_preprocess_html(&$vars) {
      'content' => 'width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no, initial-scale=1',
    ),
   );
-  drupal_add_html_head($viewport, 'viewport');
+  backdrop_add_html_head($viewport, 'viewport');
 
   // Remove the no-sidebars class which is always added by core. Core assumes
   // the sidebar regions are called sidebar_first and sidebar_second, which
@@ -163,7 +163,7 @@ function adminimal_preprocess_html(&$vars) {
     $active_themes = list_themes();
     if ($active_themes['adminimal']->status == 0) {
       global $base_url;
-      drupal_set_message(t('Adminimal Theme must be enabled to work properly. Please enable it from the <a href="@link">Appearance page</a>.', array('@link' => $base_url . '/admin/appearance')), 'warning');
+      backdrop_set_message(t('Adminimal Theme must be enabled to work properly. Please enable it from the <a href="@link">Appearance page</a>.', array('@link' => $base_url . '/admin/appearance')), 'warning');
     }
   }
 }
@@ -171,15 +171,15 @@ function adminimal_preprocess_html(&$vars) {
 /**
  * Override or insert variables into the page template.
  */
-function adminimal_preprocess_page(&$vars) {
-  $vars['primary_local_tasks'] = $vars['tabs'];
-  unset($vars['primary_local_tasks']['#secondary']);
-  $vars['secondary_local_tasks'] = array(
-    '#theme' => 'menu_local_tasks',
-    '#secondary' => $vars['tabs']['#secondary'],
-  );
-  unset($vars['page']['hidden']);
-}
+// function adminimal_preprocess_page(&$vars) {
+  // $vars['primary_local_tasks'] = $vars['tabs'];
+  // unset($vars['primary_local_tasks']['#secondary']);
+  // $vars['secondary_local_tasks'] = array(
+    // '#theme' => 'menu_local_tasks',
+    // '#secondary' => $vars['tabs']['#secondary'],
+  // );
+  // unset($vars['page']['hidden']);
+// }
 
 /**
  * Display the list of available node types for node creation.
@@ -233,7 +233,7 @@ function adminimal_adminimal_block_content($variables) {
  */
 function adminimal_tablesort_indicator($variables) {
   $style = $variables['style'];
-  $theme_path = drupal_get_path('theme', 'adminimal');
+  $theme_path = backdrop_get_path('theme', 'adminimal');
   if ($style == 'asc') {
     return theme('image', array('path' => $theme_path . '/images/arrow-asc.png', 'alt' => t('sort ascending'), 'width' => 13, 'height' => 13, 'title' => t('sort ascending')));
   }
@@ -248,14 +248,14 @@ function adminimal_tablesort_indicator($variables) {
 function adminimal_css_alter(&$css) {
   // Use Seven's vertical tabs style instead of the default one.
   if (isset($css['misc/vertical-tabs.css'])) {
-    $css['misc/vertical-tabs.css']['data'] = drupal_get_path('theme', 'adminimal') . '/css/vertical-tabs.css';
+    $css['misc/vertical-tabs.css']['data'] = backdrop_get_path('theme', 'adminimal') . '/css/vertical-tabs.css';
   }
   if (isset($css['misc/vertical-tabs-rtl.css'])) {
-    $css['misc/vertical-tabs-rtl.css']['data'] = drupal_get_path('theme', 'adminimal') . '/css/vertical-tabs-rtl.css';
+    $css['misc/vertical-tabs-rtl.css']['data'] = backdrop_get_path('theme', 'adminimal') . '/css/vertical-tabs-rtl.css';
   }
   // Use Seven's jQuery UI theme style instead of the default one.
   if (isset($css['misc/ui/jquery.ui.theme.css'])) {
-    $css['misc/ui/jquery.ui.theme.css']['data'] = drupal_get_path('theme', 'adminimal') . '/css/jquery.ui.theme.css';
+    $css['misc/ui/jquery.ui.theme.css']['data'] = backdrop_get_path('theme', 'adminimal') . '/css/jquery.ui.theme.css';
   }
 }
 
@@ -264,8 +264,8 @@ function adminimal_css_alter(&$css) {
  */
 function adminimal_js_alter(&$javascript) {
   // Fix module filter available updates page.
-  if (module_exists('module_filter') && isset($javascript[drupal_get_path('module', 'module_filter') . '/js/update_status.js'])) {
-    $javascript[drupal_get_path('module','module_filter').'/js/update_status.js']['data'] = drupal_get_path('theme', 'adminimal') . '/js/update_status.js';
+  if (module_exists('module_filter') && isset($javascript[backdrop_get_path('module', 'module_filter') . '/js/update_status.js'])) {
+    $javascript[backdrop_get_path('module','module_filter').'/js/update_status.js']['data'] = backdrop_get_path('theme', 'adminimal') . '/js/update_status.js';
   }
 }
 
@@ -351,14 +351,14 @@ function adminimal_table($variables) {
 
   // Add sticky headers, if applicable.
   if (!empty($header) && $sticky) {
-    drupal_add_js('misc/tableheader.js');
+    backdrop_add_js('misc/tableheader.js');
     // Add 'sticky-enabled' class to the table to identify it for JS.
     // This is needed to target tables constructed by this function.
     $attributes['class'][] = 'sticky-enabled';
   }
 
   $output = '<div class="overflow-fix">';
-  $output .= '<table' . drupal_attributes($attributes) . ">\n";
+  $output .= '<table' . backdrop_attributes($attributes) . ">\n";
 
   if (isset($caption)) {
     $output .= '<caption>' . $caption . "</caption>\n";
@@ -386,15 +386,15 @@ function adminimal_table($variables) {
 
       // Build colgroup
       if (is_array($cols) && count($cols)) {
-        $output .= ' <colgroup' . drupal_attributes($attributes) . '>';
+        $output .= ' <colgroup' . backdrop_attributes($attributes) . '>';
         $i = 0;
         foreach ($cols as $col) {
-          $output .= ' <col' . drupal_attributes($col) . ' />';
+          $output .= ' <col' . backdrop_attributes($col) . ' />';
         }
         $output .= " </colgroup>\n";
       }
       else {
-        $output .= ' <colgroup' . drupal_attributes($attributes) . " />\n";
+        $output .= ' <colgroup' . backdrop_attributes($attributes) . " />\n";
       }
     }
   }
@@ -468,7 +468,7 @@ function adminimal_table($variables) {
         }
 
         // Build row
-        $output .= ' <tr' . drupal_attributes($attributes) . '>';
+        $output .= ' <tr' . backdrop_attributes($attributes) . '>';
         $i = 0;
         foreach ($cells as $cell) {
           $cell = tablesort_cell($cell, $header, $ts, $i++);
@@ -493,7 +493,7 @@ function adminimal_ckeditor_settings_alter(&$settings) {
 
   // Check if selected adminimal skin is dark.
   if (theme_get_setting('adminimal_theme_skin') == 'dark') {
-    $adminimal_path = drupal_get_path('theme', 'adminimal');
+    $adminimal_path = backdrop_get_path('theme', 'adminimal');
     global $base_url;
     $settings['skin'] = 'adminimal-dark, '. $base_url .'/'. $adminimal_path . '/skins/dark/ckeditor/';
     array_push($settings['contentsCss'], $base_url .'/'. $adminimal_path . '/skins/dark/ckeditor/contents.css');

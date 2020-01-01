@@ -19,7 +19,7 @@ var jRes = jRespond([
 ]);
 
 // Detect Operating system and add class to the body.
-Drupal.behaviors.adminimal_os_class = {
+Backdrop.behaviors.adminimal_os_class = {
   attach: function (context, settings) {
     // Detect if OS is mac based.
     if (navigator.userAgent.indexOf('Mac OS X') != -1) {
@@ -29,15 +29,15 @@ Drupal.behaviors.adminimal_os_class = {
 };
 
 // Modify the Search field for module filter.
-Drupal.behaviors.adminimal_module_filter_box = {
+Backdrop.behaviors.adminimal_module_filter_box = {
   attach: function (context, settings) {
     //Add default hint value using the HTML5 placeholder attribute.
-    $('input#edit-module-filter-name').attr( "placeholder", Drupal.t('Search') );
+    $('input#edit-module-filter-name').attr( "placeholder", Backdrop.t('Search') );
   }
 };
 
 // Fix some krumo styling.
-Drupal.behaviors.krumo_remove_class = {
+Backdrop.behaviors.krumo_remove_class = {
   attach: function (context, settings) {
     // Find status messages that has krumo div inside them, and change the classes.
     $('#console .messages.status').has("div.krumo-root").removeClass().addClass( "krumo-wrapper" );
@@ -45,7 +45,7 @@ Drupal.behaviors.krumo_remove_class = {
 };
 
 // Add media query classes to the body tag.
-Drupal.behaviors.adminimal_media_queries = {
+Backdrop.behaviors.adminimal_media_queries = {
   attach: function (context, settings) {
     jRes.addFunc([
       {
@@ -78,7 +78,7 @@ Drupal.behaviors.adminimal_media_queries = {
 };
 
 // Move the active primary tab on mobile to be displayed last.
-Drupal.behaviors.adminimal_move_active_primary_tab = {
+Backdrop.behaviors.adminimal_move_active_primary_tab = {
   attach: function (context, settings) {
     // Add primary tabs class to the branding div for the bottom border.
     $('#branding').has("ul.tabs.primary").addClass( "has-primary-tabs" );
