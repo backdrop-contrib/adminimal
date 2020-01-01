@@ -493,7 +493,7 @@ body.sticky-actions .ajax-new-content .form-actions.form-wrapper {
   color: #FFF;
 }
 
-.adminimal-skin-dark #page {
+.page.adminimal-skin-dark {
   background: #303030;
   color: #C1C1C1;
 }
