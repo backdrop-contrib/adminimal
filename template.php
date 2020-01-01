@@ -44,21 +44,21 @@ function adminimal_preprocess_page(&$vars) {
   }
 
   // Add theme name to body class.
-  $vars['classes_array'][] = 'adminimal-theme';
+  $vars['classes'][] = 'adminimal-theme';
 
   // Style checkbox and radio buttons in Webkit Browsers.
   if (theme_get_setting('style_checkboxes')) {
-    $vars['classes_array'][] = 'style-checkboxes';
+    $vars['classes'][] = 'style-checkboxes';
   }
 
   // Disable rounded buttons setting.
   if (!theme_get_setting('rounded_buttons')) {
-    $vars['classes_array'][] = 'no-rounded-buttons';
+    $vars['classes'][] = 'no-rounded-buttons';
   }
 
   // Enable sticky action buttons.
   if (theme_get_setting('sticky_actions')) {
-    $vars['classes_array'][] = 'sticky-actions';
+    $vars['classes'][] = 'sticky-actions';
   }
 
   // Add icons to the admin configuration page.
@@ -98,14 +98,14 @@ function adminimal_preprocess_page(&$vars) {
     // Add conditional CSS for Mac OS X.
     backdrop_add_css($adminimal_path . '/skins/' . $adminimal_skin . '/mac_os_x.css', array('group' => CSS_THEME, 'weight' => 950, 'preprocess' => TRUE));
     backdrop_add_js($adminimal_path . '/skins/' . $adminimal_skin . '/' . $adminimal_skin . '.js');
-    $vars['classes_array'][] = 'adminimal-skin-' . $adminimal_skin ;
+    $vars['classes'][] = 'adminimal-skin-' . $adminimal_skin ;
   }
   else {
     backdrop_add_css($adminimal_path . '/skins/default/default.css', array('group' => CSS_THEME, 'weight' => 900, 'preprocess' => TRUE));
     // Add conditional CSS for Mac OS X.
     backdrop_add_css($adminimal_path . '/skins/default/mac_os_x.css', array('group' => CSS_THEME, 'weight' => 950, 'preprocess' => TRUE));
     backdrop_add_js($adminimal_path . '/skins/default/default.js');
-    $vars['classes_array'][] = 'adminimal-skin-default' ;
+    $vars['classes'][] = 'adminimal-skin-default' ;
   }
 
   // Add responsive styles.
@@ -140,26 +140,26 @@ function adminimal_preprocess_page(&$vars) {
   // Remove the no-sidebars class which is always added by core. Core assumes
   // the sidebar regions are called sidebar_first and sidebar_second, which
   // is not the case in this theme.
-  $key = array_search('no-sidebars', $vars['classes_array']);
+  $key = array_search('no-sidebars', $vars['classes']);
   if ($key !== FALSE) {
-    unset($vars['classes_array'][$key]);
+    unset($vars['classes'][$key]);
   }
   // Add information about the number of sidebars.
   if (!empty($vars['page']['sidebar_left']) && !empty($vars['page']['sidebar_right'])) {
-    $vars['classes_array'][] = 'two-sidebars';
+    $vars['classes'][] = 'two-sidebars';
   }
   elseif (!empty($vars['page']['sidebar_left'])) {
-    $vars['classes_array'][] = 'one-sidebar sidebar-left';
+    $vars['classes'][] = 'one-sidebar sidebar-left';
   }
   elseif (!empty($vars['page']['sidebar_right'])) {
-    $vars['classes_array'][] = 'one-sidebar sidebar-right';
+    $vars['classes'][] = 'one-sidebar sidebar-right';
   }
   else {
-    $vars['classes_array'][] = 'no-sidebars';
+    $vars['classes'][] = 'no-sidebars';
   }
 
   // Display warning message on certain pages if theme is disabled.
-  if (in_array('page-admin-appearance', $vars['classes_array']) || in_array('page-admin-modules', $vars['classes_array']) || in_array('page-admin-reports-status', $vars['classes_array'])) {
+  if (in_array('page-admin-appearance', $vars['classes']) || in_array('page-admin-modules', $vars['classes']) || in_array('page-admin-reports-status', $vars['classes'])) {
     $active_themes = list_themes();
     if ($active_themes['adminimal']->status == 0) {
       global $base_url;

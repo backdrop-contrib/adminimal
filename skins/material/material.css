@@ -946,9 +946,9 @@ input[type="submit"][id^="edit-return"]:focus,
 
 /* Orange Button */
 a.button-orange,
-#edit-cancel,
+/* #edit-cancel,
 #edit-actions-cancel,
-input#edit-buttons-revert,
+ */input#edit-buttons-revert,
 #media-browser-page a.button-no,
 .field-widget-inline-entity-form input[id*="cancel"] {
   cursor: pointer;
@@ -970,9 +970,9 @@ a#edit-cancel,a#edit-actions-cancel {
 }
 
 a.button-orange:hover,
-#edit-cancel:hover,
+/* #edit-cancel:hover,
 #edit-actions-cancel:hover,
-input#edit-buttons-revert:hover,
+ */input#edit-buttons-revert:hover,
 #media-browser-page a.button-no:hover,
 .field-widget-inline-entity-form input[id*="cancel"]:hover {
   box-shadow: 0 2px 6px rgba(0,0,0,.3);
@@ -1175,4 +1175,8 @@ body.adminimal-skin-material .ctools-twisty {
 
 body.adminimal-skin-material .ctools-dropbutton-processed.open .ctools-twisty {
   top: 12px;
+}
+
+ul.primary li.active a.active:after {
+  background: none;
 }

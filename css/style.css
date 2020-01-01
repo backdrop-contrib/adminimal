@@ -3149,3 +3149,7 @@ table.diff td.diff-section-title,
 div.diff-section-title {
   font-size: 1em;
 }
+
+header .block-system-breadcrumb {
+  margin: 1em 0;
+}
